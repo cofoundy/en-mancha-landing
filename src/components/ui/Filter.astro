@@ -1,0 +1,62 @@
+---
+interface Props {
+  id?: string;
+  label: string;
+  isActive?: boolean;
+  hasIcon?: boolean;
+  isDropdown?: boolean;
+  class?: string;
+}
+
+const {
+  id,
+  label,
+  isActive = false,
+  hasIcon = false,
+  isDropdown = false,
+  class: className = '',
+} = Astro.props;
+
+// Base styles
+const baseStyles = "inline-flex items-center px-3 py-2 text-sm font-medium border border-neutral-lighter rounded-md transition-colors";
+
+// Active state
+const activeStyles = isActive
+  ? "bg-guardsman-lighter border-guardsman text-neutral-darkest"
+  : "bg-white text-neutral-darkest hover:bg-neutral-lightest";
+
+// Dropdown styles
+const dropdownStyles = isDropdown 
+  ? "pr-8 relative"
+  : "";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  activeStyles,
+  dropdownStyles,
+  className
+].join(" ");
+
+// Dropdown arrow
+const dropdownArrow = '<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>';
+---
+
+<button 
+  type="button"
+  id={id}
+  class={classes}
+>
+  {hasIcon && (
+    <span class="mr-2">
+      <slot name="icon" />
+    </span>
+  )}
+  <span>{label}</span>
+  {isDropdown && (
+    <span class="ml-1 inline-block">
+      <Fragment set:html={dropdownArrow} />
+    </span>
+  )}
+  <slot />
+</button> 

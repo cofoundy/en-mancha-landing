@@ -1,0 +1,54 @@
+---
+import ImageCard from './ui/ImageCard.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  title = "Selecciona el tipo de comida deseada",
+  subtitle = "Elige entre diversas opciones de menús.",
+  class: className = '',
+} = Astro.props;
+
+// Sample menu type data
+const menuTypes = [
+  {
+    title: "Menú Criollo",
+    description: "Saborea la auténtica comida peruana con nuestras opciones de menú criollo tradicional.",
+    image: "/images/card-foods/pachamanca.png"
+  },
+  {
+    title: "Menú Internacional",
+    description: "Descubre sabores de todo el mundo con nuestra selección internacional de platos.",
+    image: "/images/card-foods/lomoSaltado.jpg"
+  },
+  {
+    title: "Menú Ligero",
+    description: "Opciones más saludables y ligeras para cuidar tu alimentación sin renunciar al sabor.",
+    image: "/images/card-foods/ajiGallina.jpg"
+  }
+];
+---
+<section class={`flex px-4 md:px-16 lg:px-64 py-16 flex-col items-center gap-20 self-stretch ${className}`}>
+  <div class="w-full max-w-[1280px]">
+    <!-- Título y subtítulo -->
+    <div class="flex flex-col items-center text-center gap-6 mb-16">
+      <h2 class="font-poppins text-4xl md:text-5xl font-normal leading-[120%] tracking-[-0.48px] text-[#0D0A00]">{title}</h2>
+      {subtitle && <p class="font-quicksand text-lg font-normal leading-[150%] text-[#0D0A00] max-w-3xl">{subtitle}</p>}
+    </div>
+    
+    <!-- Contenedor de tarjetas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {menuTypes.map(item => (
+        <ImageCard
+          title={item.title}
+          description={item.description}
+          image={item.image}
+        />
+      ))}
+    </div>
+  </div>
+</section> 

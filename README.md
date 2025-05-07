@@ -1,48 +1,92 @@
-# Astro Starter Kit: Basics
+# En Mancha Landing Page
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Este proyecto es una landing page para "En Mancha", una plataforma de pedidos de comida para grupos.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 🚀 Estructura del Proyecto
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+El proyecto está construido con Astro y Tailwind CSS, y tiene la siguiente estructura:
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
+│   ├── images/              # Imágenes utilizadas en la página
+│   │   ├── features/        # Iconos para la sección de características
+│   │   ├── how-woks/        # Imágenes para la sección "Cómo funciona"
+│   │   ├── card-foods/      # Imágenes para las tarjetas de comida
+│   │   └── restaurants/     # Imágenes para las tarjetas de restaurantes
+│   ├── icons/               # Iconos SVG para redes sociales
+│   ├── logoFooter.svg       # Logo del footer
+│   └── favicon.svg          # Favicon del sitio
 ├── src/
+│   ├── components/          # Componentes reutilizables
+│   │   ├── ui/              # Componentes básicos de UI
+│   │   │   ├── ImageCard.astro
+│   │   │   └── ...
+│   │   ├── Header.astro
+│   │   ├── Footer.astro
+│   │   ├── HeroBanner.astro
+│   │   ├── FoodCardCarousel.astro
+│   │   ├── RestaurantCardCarousel.astro
+│   │   ├── HowItWorks.astro
+│   │   ├── KeyFeatures.astro
+│   │   └── ...
 │   ├── layouts/
-│   │   └── Layout.astro
+│   │   └── Layout.astro     # Layout principal con estilos globales
 │   └── pages/
-│       └── index.astro
+│       ├── index.astro      # Página principal
+│       ├── ui-components.astro # Página de documentación de componentes UI
+│       ├── docs.astro       # Documentación técnica
+│       └── examples/        # Páginas de ejemplos de componentes
 └── package.json
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 📝 Características del Proyecto
 
-## 🧞 Commands
+- **Diseño Responsivo**: Todos los componentes están optimizados para dispositivos móviles, tablets y escritorio.
+- **Componentes Modulares**: El sitio está construido con componentes reutilizables y bien organizados.
+- **Páginas de Documentación**: Incluye páginas de documentación y ejemplos para facilitar el desarrollo.
+- **Alto Rendimiento**: Optimizado para carga rápida y buena experiencia de usuario.
 
-All commands are run from the root of the project, from a terminal:
+## 🧩 Principales Componentes
 
-| Command                   | Action                                           |
+- **Header**: Navegación principal con logo y menú.
+- **HeroBanner**: Banner principal con mensaje de bienvenida y llamado a la acción.
+- **FoodCardCarousel**: Carrusel de tarjetas de comida con desplazamiento horizontal.
+- **RestaurantCardCarousel**: Carrusel de tarjetas de restaurantes.
+- **HowItWorks**: Sección explicativa del funcionamiento de la plataforma.
+- **KeyFeatures**: Características clave del servicio con iconos.
+- **Footer**: Información de contacto, navegación y redes sociales.
+
+## 📚 Documentación y Ejemplos
+
+El proyecto incluye páginas adicionales para referencia:
+
+- `/ui-components` - Muestra todos los componentes UI básicos y sus variantes.
+- `/docs` - Documentación técnica detallada para desarrolladores.
+- `/examples/food-card-example` - Ejemplo de implementación de tarjetas de comida.
+- `/examples/restaurant-card-example` - Ejemplo de implementación de tarjetas de restaurante.
+
+## 🧞 Comandos
+
+Todos los comandos se ejecutan desde la raíz del proyecto:
+
+| Comando                   | Acción                                           |
 | :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| `pnpm install`             | Instala las dependencias                         |
+| `pnpm run dev`             | Inicia el servidor de desarrollo en `localhost:4321` |
+| `pnpm run build`           | Construye el sitio para producción en `./dist/`  |
+| `pnpm run preview`         | Previsualiza la build localmente antes de desplegar |
+| `pnpm run astro ...`       | Ejecuta comandos CLI como `astro add`, `astro check` |
 
-## 👀 Want to learn more?
+## 🎨 Guía de Estilos
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+El proyecto utiliza una guía de estilos consistente con:
+
+- **Tipografía**: Fuentes principales para títulos y cuerpo de texto.
+- **Colores**: Paleta de colores primarios, neutros y de acento.
+- **Espaciado**: Sistema de espaciado consistente en todo el sitio.
+- **Componentes**: Estilos coherentes para botones, tarjetas y otros elementos de UI.
+
+## 👀 ¿Quieres saber más?
+
+Para más información sobre Astro, consulta [la documentación oficial](https://docs.astro.build).

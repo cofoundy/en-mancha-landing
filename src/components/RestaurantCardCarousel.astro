@@ -1,0 +1,85 @@
+---
+import RestaurantCard from './ui/RestaurantCard.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  title = "Nuevos restaurantes cercanos",
+  subtitle = "Encuentra las mejores ofertas para tus comidas grupales en minutos y sin complicaciones.",
+  class: className = '',
+} = Astro.props;
+
+// Sample restaurant data
+const restaurantItems = [
+  {
+    name: "Blackbrick",
+    image: "/images/restaurants/restaurant1.png",
+    speciality: "Especialidad",
+    location: "Lugar",
+    isNew: true
+  },
+  {
+    name: "Fog Harbor Fish House",
+    image: "/images/restaurants/restaurant2.png",
+    speciality: "Especialidad",
+    location: "Lugar",
+    isNew: true
+  },
+  {
+    name: "Chewy Balls",
+    image: "/images/restaurants/restaurant3.png",
+    speciality: "Especialidad",
+    location: "Lugar",
+    isNew: false,
+    inTesting: true
+  },
+  {
+    name: "The Local House",
+    image: "/images/restaurants/restaurant4.png",
+    speciality: "Especialidad",
+    location: "Lugar",
+    isNew: true
+  }
+];
+---
+
+<section class={`flex px-4 md:px-16 lg:px-64 py-16 flex-col items-center gap-20 self-stretch ${className}`}>
+  <div class="w-full max-w-[1280px]">
+    <!-- Título y subtítulo con los estilos especificados -->
+    <div class="flex flex-col items-start gap-6 self-stretch mb-8">
+      <h2 class="font-poppins text-4xl md:text-5xl font-normal leading-[120%] tracking-[-0.48px] text-[#0D0A00]">{title}</h2>
+      {subtitle && <p class="font-quicksand text-lg font-normal leading-[150%] text-[#0D0A00]">{subtitle}</p>}
+    </div>
+    
+    <!-- Contenedor scrollable para las tarjetas en dispositivos móviles -->
+    <div class="flex items-start gap-6 self-stretch overflow-x-auto pb-6 snap-x snap-mandatory -mx-4 px-4 scrollbar-hide">
+      {restaurantItems.map(item => (
+        <div class="snap-start flex-shrink-0">
+          <RestaurantCard
+            name={item.name}
+            image={item.image}
+            speciality={item.speciality}
+            location={item.location}
+            isNew={item.isNew}
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Ocultar la barra de desplazamiento manteniendo la funcionalidad */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Para Chrome, Safari y Opera */
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Para Internet Explorer y Edge */
+    scrollbar-width: none;  /* Para Firefox */
+  }
+</style> 

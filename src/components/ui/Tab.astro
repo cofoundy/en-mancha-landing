@@ -1,0 +1,40 @@
+---
+interface Props {
+  id?: string;
+  label: string;
+  isActive?: boolean;
+  class?: string;
+}
+
+const {
+  id,
+  label,
+  isActive = false,
+  class: className = '',
+} = Astro.props;
+
+// Base styles
+const baseStyles = "inline-block px-4 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap";
+
+// Active state
+const activeStyles = isActive
+  ? "border-guardsman text-neutral-darkest"
+  : "border-transparent text-neutral-dark hover:text-neutral-darkest hover:border-neutral-light";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  activeStyles,
+  className
+].join(" ");
+---
+
+<button 
+  type="button"
+  id={id}
+  class={classes}
+  aria-selected={isActive}
+  role="tab"
+>
+  {label}
+</button> 

@@ -1,0 +1,101 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  label?: string;
+  description?: string;
+  checked?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  variant?: 'default' | 'with-label';
+  labelPosition?: 'left' | 'right';
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  description,
+  checked = false,
+  required = false,
+  disabled = false,
+  variant = 'default',
+  labelPosition = 'right',
+  class: className = '',
+} = Astro.props;
+
+// Container class based on variant
+const containerClass = variant === 'with-label'
+  ? "flex items-start space-y-2 w-full"
+  : "flex items-center";
+
+// Toggle classes
+const toggleClass = "relative inline-flex h-6 w-11 items-center rounded-full";
+const toggleBgClass = checked 
+  ? "bg-guardsman" 
+  : "bg-neutral-lighter";
+const toggleSwitchClass = checked
+  ? "translate-x-6 bg-white"
+  : "translate-x-1 bg-white";
+const toggleDisabledClass = disabled
+  ? "opacity-50 cursor-not-allowed"
+  : "cursor-pointer";
+
+// Label classes
+const labelClass = "select-none text-sm font-medium";
+---
+
+{variant === 'with-label' ? (
+  <div class={`${containerClass} ${className}`}>
+    <div class="flex flex-col">
+      {label && <span class="text-sm font-medium text-neutral-darkest">{label}</span>}
+      {description && <span class="text-xs text-neutral-dark">{description}</span>}
+    </div>
+    <div class="flex items-center justify-end flex-1">
+      <label for={id} class={`${toggleClass} ${toggleBgClass} ${toggleDisabledClass}`}>
+        <span class="sr-only">{label}</span>
+        <input
+          type="checkbox"
+          id={id}
+          name={name}
+          checked={checked}
+          required={required}
+          disabled={disabled}
+          class="sr-only"
+        />
+        <span
+          class={`inline-block h-4 w-4 transform rounded-full ${toggleSwitchClass} transition`}
+        ></span>
+      </label>
+    </div>
+  </div>
+) : (
+  <div class={`${containerClass} ${className}`}>
+    {label && labelPosition === 'left' && (
+      <label for={id} class={`${labelClass} mr-3`}>
+        {label}
+      </label>
+    )}
+    <label for={id} class={`${toggleClass} ${toggleBgClass} ${toggleDisabledClass}`}>
+      <span class="sr-only">{label}</span>
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        checked={checked}
+        required={required}
+        disabled={disabled}
+        class="sr-only"
+      />
+      <span
+        class={`inline-block h-4 w-4 transform rounded-full ${toggleSwitchClass} transition`}
+      ></span>
+    </label>
+    {label && labelPosition === 'right' && (
+      <label for={id} class={`${labelClass} ml-3`}>
+        {label}
+      </label>
+    )}
+  </div>
+)} 

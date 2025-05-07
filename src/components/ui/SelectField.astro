@@ -1,0 +1,69 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  label?: string;
+  required?: boolean;
+  disabled?: boolean;
+  hasIcon?: boolean;
+  class?: string;
+  fullWidth?: boolean;
+  defaultOption?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  required = false,
+  disabled = false,
+  hasIcon = false,
+  class: className = '',
+  fullWidth = true,
+  defaultOption = '',
+  ...rest
+} = Astro.props;
+
+// Base styles for select
+const baseSelectStyles = "appearance-none border border-neutral-lighter rounded-md text-neutral-darkest focus:border-catalina focus:ring-1 focus:ring-catalina-light outline-none transition-colors p-2 pr-8 bg-white";
+
+// Width class
+const widthClass = fullWidth ? "w-full" : "";
+
+// Apply padding if there's an icon
+const iconPadding = hasIcon ? "pl-9" : "";
+
+// Compute final select classes
+const selectClasses = [
+  baseSelectStyles,
+  widthClass,
+  iconPadding,
+  className
+].join(" ");
+---
+
+<div class={`relative ${widthClass}`}>
+  {hasIcon && (
+    <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral">
+      <slot name="icon" />
+    </div>
+  )}
+  
+  <select
+    id={id}
+    name={name}
+    required={required}
+    disabled={disabled}
+    class={selectClasses}
+    {...rest}
+  >
+    {defaultOption && <option value="">{defaultOption}</option>}
+    <slot />
+  </select>
+  
+  <div class="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none text-neutral">
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </div>
+</div> 

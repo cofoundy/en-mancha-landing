@@ -1,0 +1,45 @@
+---
+interface Props {
+  direction: 'prev' | 'next';
+  onClick?: string;
+  disabled?: boolean;
+  class?: string;
+}
+
+const {
+  direction,
+  onClick,
+  disabled = false,
+  class: className = '',
+} = Astro.props;
+
+// Base styles
+const baseStyles = "inline-flex items-center justify-center w-8 h-8 border border-neutral-lighter rounded-md focus:outline-none transition-colors";
+
+// Disabled state
+const disabledStyles = disabled
+  ? "opacity-50 cursor-not-allowed"
+  : "hover:bg-neutral-lightest cursor-pointer";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  disabledStyles,
+  className
+].join(" ");
+
+// Arrow direction
+const arrow = direction === 'prev'
+  ? '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>'
+  : '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>';
+---
+
+<button 
+  type="button"
+  class={classes}
+  aria-label={direction === 'prev' ? 'Previous slide' : 'Next slide'}
+  onclick={onClick}
+  disabled={disabled}
+>
+  <Fragment set:html={arrow} />
+</button> 

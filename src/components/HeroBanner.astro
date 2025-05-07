@@ -1,0 +1,41 @@
+---
+import Button from './ui/Button.astro';
+import Icon from './ui/Icon.astro';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  backgroundImage?: string;
+  class?: string;
+}
+
+const {
+  title = "¡Antojos?! EnMancha te ofrece las mejores opciones",
+  subtitle = "Descubre lo fácil que es coordinar comidas para tu mancha. Compara ofertas y elige la mejor opción en minutos.",
+  backgroundImage = "/images/backgroundImage.jpg",
+  class: className = '',
+} = Astro.props;
+---
+
+<div 
+  class={`flex h-[600px] px-4 md:px-16 lg:px-64 justify-center items-center self-stretch ${className}`}
+  style={`background: linear-gradient(0deg, rgba(0, 0, 0, 0.60) 0%, rgba(0, 0, 0, 0.60) 100%), url(${backgroundImage}) lightgray 50% / cover no-repeat;`}
+>
+  <div class="flex w-full max-w-[1280px] flex-col items-start gap-10">
+    <div class="text-white max-w-[600px]">
+      <h1 class="font-heading text-3xl md:text-4xl lg:text-5xl  mb-6">{title}</h1>
+      <p class="font-quicksand text-lg font-normal leading-[150%] max-w-[800px]">{subtitle}</p>
+    </div>
+    
+    <div class="flex flex-col sm:flex-row gap-4 w-full max-w-lg">
+      <Button class="flex-1 text-white" iconName="search">
+        <Icon name="search" slot="icon-left" />
+        Buscar
+      </Button>
+      
+      <Button variant="secondary" class="flex-1">
+        Explorar
+      </Button>
+    </div>
+  </div>
+</div> 

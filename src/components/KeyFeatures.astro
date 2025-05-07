@@ -1,0 +1,105 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  title = "Características Clave de Nuestra Plataforma",
+  subtitle = "Nuestra plataforma te permite gestionar comidas grupales de manera rápida y sencilla. Con solo unos clics, podrás acceder a una variedad de opciones de restaurantes confiables.",
+  class: className = '',
+} = Astro.props;
+
+// Features data for desktop view
+const featuresDesktop = [
+  {
+    icon: "/images/features/dishes.png",
+    title: "Diversidad que se Ajusta a tu Empresa",
+    description: "Encuentra múltiples opciones de catering adaptadas a distintos presupuestos, preferencias y ocasiones corporativas."
+  },
+  {
+    icon: "/images/features/trust.png",
+    title: "Proveedores Verificados y Confiables",
+    description: "Trabajamos solo con empresas validadas para asegurar calidad, puntualidad y cumplimiento en cada evento."
+  },
+  {
+    icon: "/images/features/time.png",
+    title: "Ahorra Tiempo y Costos en tus Pedidos",
+    description: "Solicita, compara y confirma catering en minutos, con precios competitivos sin sacrificar calidad."
+  }
+];
+
+// Features data for mobile view (different titles and descriptions as per design)
+const featuresMobile = [
+  {
+    icon: "/images/features/dishes.png",
+    title: "Variedad de Opciones para Todos los Gustos",
+    description: "Explora una amplia gama de ofertas culinarias."
+  },
+  {
+    icon: "/images/features/trust.png",
+    title: "Confianza en Cada Elección de Proveedor",
+    description: "Todos nuestros proveedores son cuidadosamente seleccionados."
+  },
+  {
+    icon: "/images/features/time.png",
+    title: "Rapidez en la Confirmación de Solicitudes",
+    description: "Confirma tu solicitud en minutos y sin complicaciones."
+  }
+];
+---
+
+<section class="flex px-4 md:px-16 lg:px-64 py-16 flex-col items-center gap-[80px] self-stretch">
+  <div class="w-full max-w-[1280px] flex flex-col items-start gap-[80px] self-stretch">
+    <!-- Título y subtítulo -->
+    <div class="flex flex-col gap-6 self-stretch">
+      <h2 class="font-heading text-4xl md:text-5xl font-normal leading-[120%] tracking-[-0.48px] text-neutral-darkest">{title}</h2>
+      {subtitle && <p class="font-body text-lg font-normal leading-[150%] text-neutral-darkest max-w-3xl">{subtitle}</p>}
+    </div>
+    
+    <!-- Desktop View: Feature Cards -->
+    <div class="hidden lg:flex flex-row items-start gap-[48px] self-stretch">
+      {featuresDesktop.map((feature) => (
+        <div class="flex flex-col items-start gap-[24px] flex-1">
+          <!-- Icon -->
+          <div class="w-16 h-16">
+            <img 
+              src={feature.icon} 
+              alt={feature.title} 
+              class="w-full h-full object-contain"
+            />
+          </div>
+          
+          <!-- Text content -->
+          <div class="flex flex-col gap-4">
+            <h3 class="font-heading text-2xl font-medium text-neutral-darkest">{feature.title}</h3>
+            <p class="font-body text-base text-neutral-dark">{feature.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Mobile View: Feature Cards -->
+    <div class="flex flex-col lg:hidden items-start gap-8 self-stretch">
+      {featuresMobile.map((feature) => (
+        <div class="flex flex-col items-start gap-[24px]">
+          <!-- Icon -->
+          <div class="w-12 h-12">
+            <img 
+              src={feature.icon} 
+              alt={feature.title} 
+              class="w-full h-full object-contain"
+            />
+          </div>
+          
+          <!-- Text content -->
+          <div class="flex flex-col gap-2">
+            <h3 class="font-heading text-xl font-medium text-neutral-darkest">{feature.title}</h3>
+            <p class="font-body text-sm text-neutral-dark">{feature.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section> 

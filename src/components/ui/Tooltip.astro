@@ -1,0 +1,67 @@
+---
+interface Props {
+  content: string;
+  position?: 'top' | 'right' | 'bottom' | 'left';
+  title?: string;
+  hasImage?: boolean;
+  hasAction?: boolean;
+  actionText?: string;
+  class?: string;
+}
+
+const {
+  content,
+  position = 'top',
+  title,
+  hasImage = false,
+  hasAction = false,
+  actionText = 'Find out more',
+  class: className = '',
+} = Astro.props;
+
+// Position classes
+const positionClasses = {
+  top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
+  right: "left-full top-1/2 -translate-y-1/2 ml-2",
+  bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
+  left: "right-full top-1/2 -translate-y-1/2 mr-2"
+};
+
+// Arrow classes based on position
+const arrowClasses = {
+  top: "top-full left-1/2 -translate-x-1/2 border-t-neutral-darker border-r-transparent border-b-transparent border-l-transparent",
+  right: "right-full top-1/2 -translate-y-1/2 border-t-transparent border-r-neutral-darker border-b-transparent border-l-transparent",
+  bottom: "bottom-full left-1/2 -translate-x-1/2 border-t-transparent border-r-transparent border-b-neutral-darker border-l-transparent",
+  left: "left-full top-1/2 -translate-y-1/2 border-t-transparent border-r-transparent border-b-transparent border-l-neutral-darker"
+};
+
+// Tooltip base classes
+const tooltipClasses = [
+  "absolute z-10 w-64 p-4 bg-neutral-darker text-white rounded invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity",
+  positionClasses[position],
+  className
+].join(" ");
+
+// Arrow base classes
+const arrowBaseClass = "absolute h-0 w-0 border-4";
+const arrowClass = `${arrowBaseClass} ${arrowClasses[position]}`;
+---
+
+<div class="relative inline-flex group">
+  <div class={tooltipClasses}>
+    {hasImage && (
+      <div class="mb-2">
+        <slot name="image" />
+      </div>
+    )}
+    {title && <div class="text-sm font-medium mb-1">{title}</div>}
+    <p class="text-xs">{content}</p>
+    {hasAction && (
+      <a href="#" class="text-xs text-guardsman-lighter mt-2 block hover:text-white">
+        {actionText}
+      </a>
+    )}
+    <span class={arrowClass}></span>
+  </div>
+  <slot />
+</div> 

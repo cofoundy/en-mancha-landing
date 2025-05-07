@@ -1,0 +1,22 @@
+---
+interface Props {
+  class?: string;
+}
+
+const {
+  class: className = '',
+} = Astro.props;
+
+// Base styles
+const baseStyles = "flex border-b border-neutral-lighter";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  className
+].join(" ");
+---
+
+<div class={classes} role="tablist">
+  <slot />
+</div> 

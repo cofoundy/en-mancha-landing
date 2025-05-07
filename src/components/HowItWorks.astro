@@ -1,0 +1,59 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  class?: string;
+}
+
+const {
+  title = "Así funciona nuestra plataforma de comidas",
+  subtitle = "Solicita una comida grupal en minutos. Compara ofertas de restaurantes verificados y elige la mejor opción para tu equipo.",
+  class: className = '',
+} = Astro.props;
+
+// Steps data
+const steps = [
+  {
+    image: "/images/how-woks/placeholder1.png",
+    title: "Selecciona el tipo de comida deseada",
+    description: "Elige entre diversas opciones de menús."
+  },
+  {
+    image: "/images/how-woks/placeholder2.png",
+    title: "Elige la mejor opcion para",
+    description: "Indica cuándo y cuántos disfrutarán la comida."
+  },
+  {
+    image: "/images/how-woks/placeholder3.png",
+    title: "Confirma la mejor oferta",
+    description: "Revisa las propuestas y elige la ideal."
+  }
+];
+---
+
+<section class="flex px-4 md:px-16 lg:px-64 py-16 flex-col items-center gap-[80px] self-stretch">
+  <div class="w-full max-w-[1280px] flex flex-col items-start gap-[80px] self-stretch">
+    <!-- Título y subtítulo -->
+    <div class="flex flex-col gap-6 self-stretch">
+      <h2 class="font-heading text-4xl md:text-5xl font-normal leading-[120%] tracking-[-0.48px] text-neutral-darkest">{title}</h2>
+      {subtitle && <p class="font-body text-lg font-normal leading-[150%] text-neutral-darkest max-w-3xl">{subtitle}</p>}
+    </div>
+    
+    <!-- Pasos - Desktop: Horizontal, Mobile: Vertical -->
+    <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-[48px] self-stretch">
+      {steps.map((step, index) => (
+        <div class="flex flex-col items-start gap-6 flex-1">
+          <div class="w-full overflow-hidden rounded-lg">
+            <img 
+              src={step.image} 
+              alt={step.title} 
+              class="w-full h-[225px] object-cover"
+            />
+          </div>
+          <h3 class="font-heading text-2xl font-medium text-neutral-darkest">{step.title}</h3>
+          <p class="font-body text-base text-neutral-dark">{step.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section> 

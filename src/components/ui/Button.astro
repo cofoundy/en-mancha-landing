@@ -1,0 +1,86 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'icon';
+  size?: 'regular' | 'small';
+  iconPosition?: 'left' | 'right';
+  iconName?: string;
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  variant = 'primary',
+  size = 'regular',
+  iconPosition = 'left',
+  iconName,
+  href,
+  type = 'button',
+  class: className = '',
+  fullWidth = false,
+  ...rest
+} = Astro.props;
+
+// Base styles
+let baseStyles = "inline-flex items-center justify-center font-medium transition-colors rounded-md focus:outline-none";
+
+// Size variants
+const sizeClasses = {
+  regular: "px-4 py-2 text-md",
+  small: "p-2 text-sm"
+};
+
+// Button variants
+const variantClasses = {
+  primary: "bg-guardsman text-white hover:bg-guardsman-dark focus:ring-2 focus:ring-guardsman-light",
+  secondary: "bg-white text-neutral-darkest border border-neutral-lighter hover:bg-neutral-lightest focus:ring-2 focus:ring-neutral-light",
+  icon: size === 'small' ? "p-2" : "p-3"
+};
+
+// Width
+const widthClass = fullWidth ? "w-full" : "";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  sizeClasses[size],
+  variantClasses[variant],
+  widthClass,
+  className
+].join(" ");
+
+const Element = href ? 'a' : 'button';
+---
+
+{
+  href ? (
+    <a href={href} class={classes} {...rest}>
+      {iconName && iconPosition === 'left' && (
+        <span class={`mr-2 ${size === 'small' ? 'text-sm' : 'text-base'}`}>
+          <slot name="icon-left" />
+        </span>
+      )}
+      <slot />
+      {iconName && iconPosition === 'right' && (
+        <span class={`ml-2 ${size === 'small' ? 'text-sm' : 'text-base'}`}>
+          <slot name="icon-right" />
+        </span>
+      )}
+    </a>
+  ) : (
+    <button type={type} class={classes} {...rest}>
+      {iconName && iconPosition === 'left' && (
+        <span class={`mr-2 ${size === 'small' ? 'text-sm' : 'text-base'}`}>
+          <slot name="icon-left" />
+        </span>
+      )}
+      <slot />
+      {iconName && iconPosition === 'right' && (
+        <span class={`ml-2 ${size === 'small' ? 'text-sm' : 'text-base'}`}>
+          <slot name="icon-right" />
+        </span>
+      )}
+    </button>
+  )
+} 

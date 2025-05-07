@@ -1,0 +1,52 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  placeholder?: string;
+  value?: string;
+  required?: boolean;
+  disabled?: boolean;
+  rows?: number;
+  class?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  id,
+  name,
+  placeholder = '',
+  value = '',
+  required = false,
+  disabled = false,
+  rows = 4,
+  class: className = '',
+  fullWidth = true,
+  ...rest
+} = Astro.props;
+
+// Base styles for textarea
+const baseStyles = "border border-neutral-lighter rounded-md text-neutral-darkest focus:border-catalina focus:ring-1 focus:ring-catalina-light outline-none transition-colors p-2 resize-none";
+
+// Width class
+const widthClass = fullWidth ? "w-full" : "";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  widthClass,
+  className
+].join(" ");
+---
+
+<div class={`relative ${widthClass}`}>
+  <textarea
+    id={id}
+    name={name}
+    placeholder={placeholder}
+    rows={rows}
+    required={required}
+    disabled={disabled}
+    class={classes}
+    {...rest}
+  >{value}</textarea>
+</div> 

@@ -1,0 +1,113 @@
+---
+interface Props {
+  title: string;
+  image: string;
+  rating: number;
+  normalPrice: number;
+  enManchaPrice: number;
+  discount: number;
+  badgeText?: string;
+  splitPrice?: number;
+  class?: string;
+}
+
+const {
+  title,
+  image,
+  rating,
+  normalPrice,
+  enManchaPrice,
+  discount,
+  badgeText,
+  splitPrice,
+  class: className = '',
+} = Astro.props;
+
+// Calculate number of full stars based on rating
+const fullStars = Math.floor(rating);
+const hasHalfStar = rating % 1 >= 0.5;
+const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+// Format prices with S/ prefix
+const formatPrice = (price: number) => `S/ ${price.toFixed(2)}`;
+---
+
+<div class={`flex w-[302px] min-w-[302px] max-w-[406px] p-2 pb-4 flex-col items-center gap-6 rounded-2xl border-2 border-[rgba(13,10,0,0.15)] ${className}`}>
+  <!-- Image container with badge -->
+  <div class="relative w-full h-[180px] rounded-xl overflow-hidden">
+    <img src={image} alt={title} class="w-full h-full object-cover">
+    
+    {badgeText && (
+      <div class="absolute top-2 left-2 bg-white rounded-md px-3 py-1 text-sm font-medium text-guardsman">
+        {badgeText}
+      </div>
+    )}
+    
+    <!-- Badge right corner -->
+    <div class="absolute bottom-2 right-2 bg-guardsman-lighter rounded-md p-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M11.99 18.75C11.85 18.75 11.71 18.75 11.5 18.67L9.32001 17.91C9.17001 17.84 9.09001 17.69 9.09001 17.54C9.09001 17.38 9.17001 17.23 9.32001 17.16L11.5 16.39C11.71 16.31 11.93 16.31 12.14 16.39L14.32 17.16C14.47 17.23 14.55 17.38 14.55 17.54C14.55 17.69 14.47 17.84 14.32 17.91L12.14 18.67C12.07 18.67 12.07 18.75 11.99 18.75Z" fill="#603813"/>
+        <path d="M12 18.75C11.59 18.75 11.25 18.41 11.25 18V15.75C11.25 15.34 11.59 15 12 15C12.41 15 12.75 15.34 12.75 15.75V18C12.75 18.41 12.41 18.75 12 18.75Z" fill="#603813"/>
+        <path d="M4.07992 18.02C3.66992 18.02 3.32992 17.69 3.32992 17.27C3.32992 17.1 3.39992 16.94 3.47992 16.8L9.71992 6.13C9.85992 5.9 10.0899 5.75 10.3699 5.75H13.6399C13.9199 5.75 14.1499 5.9 14.2899 6.13L20.5299 16.8C20.5299 16.84 20.5999 16.95 20.5999 17.06C20.6599 17.44 20.4399 17.84 20.0199 17.91C19.7399 17.98 19.4699 17.84 19.3299 17.61L13.3399 7.28H10.6899L4.76992 17.47C4.62992 17.76 4.35992 17.94 4.07992 18.02Z" fill="#603813"/>
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Content -->
+  <div class="flex flex-col w-full gap-2 px-2">
+    <!-- Title -->
+    <h3 class="font-heading text-xl text-neutral-darkest">{title}</h3>
+    
+    <!-- Rating stars -->
+    <div class="flex">
+      {[...Array(fullStars)].map(() => (
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </svg>
+      ))}
+      
+      {hasHalfStar && (
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-red-600" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2L9.19 8.63L2 9.24l5.46 4.73L5.82 21L12 17.27z"/>
+          <path fill="#e5e7eb" d="M12 17.27V2l2.81 6.63l7.19.61l-5.46 4.73l1.64 7.03L12 17.27z"/>
+        </svg>
+      )}
+      
+      {[...Array(emptyStars)].map(() => (
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+        </svg>
+      ))}
+    </div>
+    
+    <!-- Pricing information -->
+    <div class="mt-2 space-y-1">
+      <div class="flex justify-between">
+        <span class="text-sm text-neutral-dark">Precio Normal</span>
+        <span class="text-sm text-neutral-dark">{formatPrice(normalPrice)}</span>
+      </div>
+      
+      <div class="flex justify-between font-medium">
+        <span class="text-base text-neutral-darkest">Precio EnMancha</span>
+        <span class="text-base text-neutral-darkest">{formatPrice(enManchaPrice)}</span>
+      </div>
+      
+      <div class="flex justify-between text-guardsman font-medium">
+        <span>Ahorro</span>
+        <span>{formatPrice(discount)}</span>
+      </div>
+    </div>
+    
+    <!-- Split price info -->
+    {splitPrice && (
+      <div class="flex items-center justify-center mt-3 py-2 px-4 rounded-md bg-neutral-lightest gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" class="text-neutral-darkest">
+          <path d="M15.8333 5L15.8333 15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M10.8333 7.5V12.5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.83333 10L5.83333 15" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="text-sm font-medium text-neutral-darkest">Cada uno paga S/. {splitPrice.toFixed(2)}</span>
+      </div>
+    )}
+  </div>
+</div> 

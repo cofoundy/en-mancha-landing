@@ -1,0 +1,313 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Button from '../components/ui/Button.astro';
+import Input from '../components/ui/Input.astro';
+import TextArea from '../components/ui/TextArea.astro';
+import SelectField from '../components/ui/SelectField.astro';
+import Tag from '../components/ui/Tag.astro';
+import Checkbox from '../components/ui/Checkbox.astro';
+import Radio from '../components/ui/Radio.astro';
+import Toggle from '../components/ui/Toggle.astro';
+import Icon from '../components/ui/Icon.astro';
+---
+
+<Layout title="UI Components - En Mancha">
+  <div class="p-8 max-w-6xl mx-auto">
+    <h1 class="font-heading text-h2 text-neutral-darkest mb-8">UI Components</h1>
+    
+    <!-- Buttons Section -->
+    <section class="mb-16">
+      <h2 class="font-heading text-h3-sm text-neutral-darkest mb-6">Buttons</h2>
+      
+      <!-- Regular buttons -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Regular Buttons</h3>
+        <div class="flex flex-wrap gap-4">
+          <Button>Button</Button>
+          <Button variant="secondary">Button</Button>
+        </div>
+      </div>
+      
+      <!-- Buttons with icons -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Buttons with Icons</h3>
+        <div class="flex flex-wrap gap-4">
+          <Button iconName="cube">
+            <Icon name="cube" slot="icon-left" />
+            Button
+          </Button>
+          <Button variant="secondary" iconName="cube">
+            <Icon name="cube" slot="icon-left" />
+            Button
+          </Button>
+          <Button iconName="cube" iconPosition="right">
+            Button
+            <Icon name="cube" slot="icon-right" />
+          </Button>
+        </div>
+      </div>
+      
+      <!-- Icon buttons -->
+      <div>
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Icon Buttons</h3>
+        <div class="flex flex-wrap gap-4">
+          <Button variant="icon">
+            <Icon name="cube" />
+          </Button>
+          <Button variant="icon" size="small">
+            <Icon name="cube" size="sm" />
+          </Button>
+          <Button variant="icon">
+            <Icon name="search" />
+          </Button>
+          <Button variant="icon">
+            <Icon name="user" />
+          </Button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Inputs Section -->
+    <section class="mb-16">
+      <h2 class="font-heading text-h3-sm text-neutral-darkest mb-6">Inputs</h2>
+      
+      <!-- Text inputs -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Text Input</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Input placeholder="Placeholder" />
+          
+          <Input 
+            placeholder="Placeholder" 
+            hasRightIcon={true}
+          >
+            <Icon name="question" slot="right-icon" />
+          </Input>
+          
+          <Input 
+            placeholder="Placeholder"
+            hasLeftIcon={true}
+          >
+            <Icon name="credit-card" slot="left-icon" />
+          </Input>
+          
+          <Input 
+            type="search"
+            placeholder="Search"
+            hasLeftIcon={true}
+          >
+            <Icon name="search" slot="left-icon" />
+          </Input>
+          
+          <Input 
+            placeholder="Placeholder"
+            prefix="USD"
+          />
+          
+          <Input 
+            placeholder="www.example.com"
+            prefix="http://"
+          />
+        </div>
+      </div>
+      
+      <!-- Text area -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Text Area</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <TextArea placeholder="Type your message..." />
+        </div>
+      </div>
+      
+      <!-- Select fields -->
+      <div>
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Select Fields</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <SelectField defaultOption="Select one...">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+          </SelectField>
+          
+          <SelectField 
+            defaultOption="Select one..."
+            hasIcon={true}
+          >
+            <Icon name="clock" slot="icon" />
+            <option value="9am">9:00 AM</option>
+            <option value="12pm">12:00 PM</option>
+            <option value="3pm">3:00 PM</option>
+          </SelectField>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Tags Section -->
+    <section class="mb-16">
+      <h2 class="font-heading text-h3-sm text-neutral-darkest mb-6">Tags</h2>
+      <div class="flex flex-wrap gap-4">
+        <Tag label="Category" />
+        <Tag 
+          label="Category"
+          hasIcon={true}
+        >
+          <Icon name="cube" slot="icon" size="sm" />
+        </Tag>
+        <Tag label="Category" variant="pill" />
+        <Tag 
+          label="Category"
+          variant="pill"
+          hasIcon={true}
+        >
+          <Icon name="cube" slot="icon" size="sm" />
+        </Tag>
+      </div>
+    </section>
+    
+    <!-- Checkboxes Section -->
+    <section class="mb-16">
+      <h2 class="font-heading text-h3-sm text-neutral-darkest mb-6">Checkboxes</h2>
+      
+      <!-- Regular checkboxes -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Regular Checkboxes</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Checkbox id="checkbox1" label="Checkbox" />
+          <Checkbox id="checkbox2" label="Checkbox" checked={true} />
+        </div>
+      </div>
+      
+      <!-- Card checkboxes -->
+      <div>
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Card Checkboxes</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Checkbox 
+            id="checkbox3" 
+            label="Checkbox" 
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            variant="card"
+            hasIcon={true}
+          >
+            <Icon name="cube" slot="icon" />
+          </Checkbox>
+          <Checkbox 
+            id="checkbox4" 
+            label="Checkbox" 
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            variant="card"
+            checked={true}
+            hasIcon={true}
+          >
+            <Icon name="cube" slot="icon" />
+          </Checkbox>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Radio Buttons Section -->
+    <section class="mb-16">
+      <h2 class="font-heading text-h3-sm text-neutral-darkest mb-6">Radio Buttons</h2>
+      
+      <!-- Regular radio buttons -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Regular Radio Buttons</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Radio id="radio1" name="radio-group1" label="Radio" value="option1" />
+          <Radio id="radio2" name="radio-group1" label="Radio" value="option2" checked={true} />
+        </div>
+      </div>
+      
+      <!-- Card radio buttons -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Card Radio Buttons</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Radio 
+            id="radio3" 
+            name="radio-group2" 
+            label="Radio button" 
+            value="option1"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            variant="card"
+            hasIcon={true}
+          >
+            <Icon name="cube" slot="icon" />
+          </Radio>
+          <Radio 
+            id="radio4" 
+            name="radio-group2" 
+            label="Radio button" 
+            value="option2"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            variant="card"
+            checked={true}
+            hasIcon={true}
+          >
+            <Icon name="cube" slot="icon" />
+          </Radio>
+        </div>
+      </div>
+      
+      <!-- Button style radio buttons -->
+      <div>
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Button Style Radio</h3>
+        <div class="flex flex-wrap gap-4 max-w-md">
+          <Radio 
+            id="radio5" 
+            name="radio-group3" 
+            label="Website design" 
+            value="option1"
+            variant="button"
+            hasIcon={true}
+          >
+            <Icon name="cube" slot="icon" size="sm" />
+          </Radio>
+          <Radio 
+            id="radio6" 
+            name="radio-group3" 
+            label="Website design" 
+            value="option2"
+            variant="button"
+            checked={true}
+            hasIcon={true}
+          >
+            <Icon name="cube" slot="icon" size="sm" />
+          </Radio>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Toggles Section -->
+    <section>
+      <h2 class="font-heading text-h3-sm text-neutral-darkest mb-6">Toggles</h2>
+      
+      <!-- Regular toggles -->
+      <div class="mb-8">
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Regular Toggles</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Toggle id="toggle1" label="Option one" />
+          <Toggle id="toggle2" label="Option one" checked={true} />
+        </div>
+      </div>
+      
+      <!-- Toggles with labels -->
+      <div>
+        <h3 class="font-heading text-h5 text-neutral-darkest mb-4">Toggles with Description</h3>
+        <div class="flex flex-col gap-4 max-w-md">
+          <Toggle 
+            id="toggle3" 
+            label="Toggle checkbox" 
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim."
+            variant="with-label"
+          />
+          <Toggle 
+            id="toggle4" 
+            label="Toggle checkbox" 
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim."
+            variant="with-label"
+            checked={true}
+          />
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout> 

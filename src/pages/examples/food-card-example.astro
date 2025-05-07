@@ -1,0 +1,58 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FoodCard from '../../components/ui/FoodCard.astro';
+---
+
+<Layout title="FoodCard Component Example">
+  <div class="p-8 max-w-6xl mx-auto">
+    <h1 class="font-heading text-h1-sm text-neutral-darkest mb-8">Food Card Component</h1>
+    
+    <div class="flex flex-wrap gap-6">
+      <FoodCard
+        title="Pachamanca criolla"
+        image="/images/card-foods/pachamanca.png"
+        rating={4.5}
+        normalPrice={162.00}
+        enManchaPrice={144.00}
+        discount={18.00}
+        badgeText="Lince"
+        splitPrice={16.00}
+      />
+      
+      <FoodCard
+        title="Parrillada Completa"
+        image="/images/card-foods/pachamanca.png"
+        rating={5}
+        normalPrice={180.00}
+        enManchaPrice={159.00}
+        discount={21.00}
+        badgeText="Nuevo"
+        splitPrice={19.90}
+      />
+      
+      <FoodCard
+        title="Ceviche Mixto"
+        image="/images/card-foods/pachamanca.png"
+        rating={3.5}
+        normalPrice={65.00}
+        enManchaPrice={54.00}
+        discount={11.00}
+        splitPrice={9.00}
+      />
+    </div>
+    
+    <h2 class="font-heading text-h3-sm text-neutral-darkest my-8">Usage Example</h2>
+    <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import FoodCard from '../components/ui/FoodCard.astro';
+
+&lt;FoodCard
+  title="Pachamanca criolla"
+  image="/images/card-foods/pachamanca.png"
+  rating={4.5}
+  normalPrice={162.00}
+  enManchaPrice={144.00}
+  discount={18.00}
+  badgeText="Lince"
+  splitPrice={16.00}
+/&gt;</code></pre>
+  </div>
+</Layout> 

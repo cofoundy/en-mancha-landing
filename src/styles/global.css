@@ -1,0 +1,24 @@
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+/* Base styles */
+:root {
+  /* Color scheme */
+  --color-text: #0D0A00; /* Neutral Darkest */
+  --color-background: #FFFFFF; /* Neutral White */
+  --color-foreground: #FFFFFF; /* Neutral White */
+  --color-border-opacity: rgba(13, 10, 0, 0.15); /* Neutral Darkest with 15% opacity */
+  --color-accent: #D50000; /* Guardsman Red */
+}
+
+/* Apply font families */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-background);
+} 

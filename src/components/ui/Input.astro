@@ -1,0 +1,111 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  type?: 'text' | 'password' | 'email' | 'search' | 'url' | 'number' | 'tel' | 'date' | 'time';
+  placeholder?: string;
+  value?: string;
+  required?: boolean;
+  disabled?: boolean;
+  hasLeftIcon?: boolean;
+  hasRightIcon?: boolean;
+  hasHelper?: boolean;
+  prefix?: string;
+  class?: string;
+  autocomplete?: string;
+  fullWidth?: boolean;
+}
+
+const {
+  id,
+  name,
+  type = 'text',
+  placeholder = '',
+  value = '',
+  required = false,
+  disabled = false,
+  hasLeftIcon = false,
+  hasRightIcon = false,
+  hasHelper = false,
+  prefix,
+  class: className = '',
+  autocomplete,
+  fullWidth = true,
+  ...rest
+} = Astro.props;
+
+// Base styles for all inputs
+const baseInputStyles = "border border-neutral-lighter rounded-md text-neutral-darkest focus:border-catalina focus:ring-1 focus:ring-catalina-light outline-none transition-colors p-2";
+
+// Width class
+const widthClass = fullWidth ? "w-full" : "";
+
+// Apply left padding if there's a left icon
+const leftPadding = hasLeftIcon ? "pl-9" : "";
+
+// Apply right padding if there's a right icon
+const rightPadding = hasRightIcon ? "pr-9" : "";
+
+// Compute final input classes
+const inputClasses = [
+  baseInputStyles,
+  widthClass,
+  leftPadding,
+  rightPadding,
+  className
+].join(" ");
+---
+
+<div class={`relative ${widthClass}`}>
+  {prefix ? (
+    <div class="flex items-center">
+      <div class="inline-flex items-center px-3 py-2 border border-r-0 border-neutral-lighter rounded-l-md bg-neutral-lightest text-neutral-dark">
+        {prefix}
+      </div>
+      <input
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        required={required}
+        disabled={disabled}
+        class={`border-l-0 rounded-l-none ${inputClasses}`}
+        autocomplete={autocomplete}
+        {...rest}
+      />
+    </div>
+  ) : (
+    <>
+      {hasLeftIcon && (
+        <div class="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral">
+          <slot name="left-icon" />
+        </div>
+      )}
+      <input
+        id={id}
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        required={required}
+        disabled={disabled}
+        class={inputClasses}
+        autocomplete={autocomplete}
+        {...rest}
+      />
+    </>
+  )}
+  
+  {hasRightIcon && (
+    <div class="absolute right-3 top-1/2 transform -translate-y-1/2 text-neutral">
+      <slot name="right-icon" />
+    </div>
+  )}
+</div>
+
+{hasHelper && (
+  <div class="mt-1">
+    <slot name="helper" />
+  </div>
+)} 

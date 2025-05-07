@@ -1,0 +1,87 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  label?: string;
+  description?: string;
+  checked?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  hasIcon?: boolean;
+  variant?: 'default' | 'card';
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  description,
+  checked = false,
+  required = false,
+  disabled = false,
+  hasIcon = false,
+  variant = 'default',
+  class: className = '',
+} = Astro.props;
+
+// Compute container class based on variant
+const containerClass = variant === 'card' 
+  ? "flex items-start border border-neutral-lighter rounded-lg p-4 cursor-pointer hover:bg-neutral-lightest"
+  : "flex items-center";
+
+// Compute label class based on variant
+const labelClass = variant === 'card'
+  ? "ml-3"
+  : "ml-2 select-none";
+---
+
+{variant === 'card' ? (
+  <label class={`${containerClass} ${className}`} for={id}>
+    {hasIcon && (
+      <div class="flex-shrink-0 mr-2">
+        <slot name="icon" />
+      </div>
+    )}
+    <div class="flex items-center h-5">
+      <input
+        type="checkbox"
+        id={id}
+        name={name}
+        checked={checked}
+        required={required}
+        disabled={disabled}
+        class="h-4 w-4 text-guardsman focus:ring-guardsman-light border-neutral-lighter rounded cursor-pointer"
+      />
+    </div>
+    <div class={labelClass}>
+      {label && <div class="text-sm font-medium text-neutral-darkest">{label}</div>}
+      {description && <div class="text-xs text-neutral-dark">{description}</div>}
+    </div>
+  </label>
+) : (
+  <div class={`${containerClass} ${className}`}>
+    <input
+      type="checkbox"
+      id={id}
+      name={name}
+      checked={checked}
+      required={required}
+      disabled={disabled}
+      class="h-4 w-4 text-guardsman focus:ring-guardsman-light border-neutral-lighter rounded cursor-pointer"
+    />
+    {(label || hasIcon) && (
+      <label for={id} class={labelClass}>
+        <div class="flex items-center">
+          {hasIcon && (
+            <span class="mr-2">
+              <slot name="icon" />
+            </span>
+          )}
+          <span class="text-sm font-medium text-neutral-darkest">{label}</span>
+        </div>
+        {description && <div class="text-xs text-neutral-dark">{description}</div>}
+      </label>
+    )}
+  </div>
+)} 

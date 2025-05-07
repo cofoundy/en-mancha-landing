@@ -1,0 +1,46 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RestaurantCard from '../../components/ui/RestaurantCard.astro';
+---
+
+<Layout title="RestaurantCard Component Example">
+  <div class="p-8 max-w-6xl mx-auto">
+    <h1 class="font-heading text-h1-sm text-neutral-darkest mb-8">Restaurant Card Component</h1>
+    
+    <div class="flex flex-wrap gap-6">
+      <RestaurantCard
+        name="Blackbrick"
+        image="/images/card-foods/pachamanca.png"
+        speciality="Pasta"
+        location="Miraflores"
+        isNew={true}
+      />
+      
+      <RestaurantCard
+        name="La Mar"
+        image="/images/card-foods/pachamanca.png"
+        speciality="Cevichería"
+        location="San Isidro"
+      />
+      
+      <RestaurantCard
+        name="Maido"
+        image="/images/card-foods/pachamanca.png"
+        speciality="Nikkei"
+        location="Miraflores"
+        isNew={true}
+      />
+    </div>
+    
+    <h2 class="font-heading text-h3-sm text-neutral-darkest my-8">Usage Example</h2>
+    <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import RestaurantCard from '../components/ui/RestaurantCard.astro';
+
+&lt;RestaurantCard
+  name="Blackbrick"
+  image="/images/card-foods/pachamanca.png"
+  speciality="Pasta"
+  location="Miraflores"
+  isNew={true}
+/&gt;</code></pre>
+  </div>
+</Layout> 

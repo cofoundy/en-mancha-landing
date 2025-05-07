@@ -1,0 +1,40 @@
+---
+interface Props {
+  label: string;
+  hasIcon?: boolean;
+  variant?: 'default' | 'pill';
+  class?: string;
+}
+
+const {
+  label,
+  hasIcon = false,
+  variant = 'default',
+  class: className = '',
+} = Astro.props;
+
+// Base styles
+const baseStyles = "inline-flex items-center text-sm";
+
+// Variant styles
+const variantStyles = {
+  default: "bg-white border border-neutral-lighter rounded-md px-3 py-2",
+  pill: "bg-white border border-neutral-lighter rounded-full px-3 py-1"
+};
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  variantStyles[variant],
+  className
+].join(" ");
+---
+
+<div class={classes}>
+  {hasIcon && (
+    <span class="mr-2">
+      <slot name="icon" />
+    </span>
+  )}
+  {label}
+</div> 

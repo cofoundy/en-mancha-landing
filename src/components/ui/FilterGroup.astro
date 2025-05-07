@@ -1,0 +1,32 @@
+---
+interface Props {
+  label?: string;
+  inline?: boolean;
+  class?: string;
+}
+
+const {
+  label,
+  inline = true,
+  class: className = '',
+} = Astro.props;
+
+// Base styles
+const baseStyles = inline
+  ? "flex flex-wrap gap-2"
+  : "flex flex-col gap-2";
+
+// Compute final classes
+const classes = [
+  baseStyles,
+  className
+].join(" ");
+---
+
+<div>
+  {label && <div class="text-sm font-medium mb-2">{label}</div>}
+  <div class={classes}>
+    <slot />
+  </div>
+</div>
+ 

@@ -1,0 +1,663 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="En Mancha Design System Documentation">
+  <div class="p-8 max-w-3xl mx-auto">
+    <h1 class="font-heading text-h1-sm text-neutral-darkest mb-8">En Mancha Design System</h1>
+    
+    <p class="text-md mb-8">
+      This document provides an overview of the En Mancha design system components and guidelines. 
+      Use these components to build consistent user interfaces across the application.
+    </p>
+    
+    <div class="space-y-16">
+      <!-- Button Component -->
+      <section id="buttons" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Button Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Button component is used for actions in forms, dialogs, and more. It supports different variants, 
+            sizes, and can include icons.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Button from '../components/ui/Button.astro';
+
+// Primary button
+&lt;Button&gt;Button Text&lt;/Button&gt;
+
+// Secondary button
+&lt;Button variant="secondary"&gt;Button Text&lt;/Button&gt;
+
+// Button with icon
+&lt;Button iconName="cube"&gt;
+  &lt;Icon name="cube" slot="icon-left" /&gt;
+  Button Text
+&lt;/Button&gt;
+
+// Icon button
+&lt;Button variant="icon"&gt;
+  &lt;Icon name="cube" /&gt;
+&lt;/Button&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>variant</code>: 'primary' (default), 'secondary', or 'icon'</li>
+            <li><code>size</code>: 'regular' (default) or 'small'</li>
+            <li><code>iconPosition</code>: 'left' (default) or 'right'</li>
+            <li><code>iconName</code>: Optional. Name of the icon to use</li>
+            <li><code>href</code>: Optional. If provided, the button renders as an anchor tag</li>
+            <li><code>type</code>: 'button' (default), 'submit', or 'reset'</li>
+            <li><code>class</code>: Additional CSS classes</li>
+            <li><code>fullWidth</code>: Boolean. Makes the button full width</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Input Component -->
+      <section id="inputs" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Input Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Input component is used for collecting user input in a text field. 
+            It supports various types of inputs and can include icons or prefixes.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Input from '../components/ui/Input.astro';
+
+// Basic input
+&lt;Input placeholder="Enter text" /&gt;
+
+// Input with icon
+&lt;Input 
+  placeholder="Search" 
+  hasLeftIcon={true}
+&gt;
+  &lt;Icon name="search" slot="left-icon" /&gt;
+&lt;/Input&gt;
+
+// Input with prefix
+&lt;Input 
+  placeholder="example.com" 
+  prefix="https://"
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: Optional ID for the input</li>
+            <li><code>name</code>: Optional name for the input</li>
+            <li><code>type</code>: 'text' (default), 'password', 'email', 'search', etc.</li>
+            <li><code>placeholder</code>: Placeholder text</li>
+            <li><code>value</code>: Input value</li>
+            <li><code>required</code>: Boolean</li>
+            <li><code>disabled</code>: Boolean</li>
+            <li><code>hasLeftIcon</code>: Boolean. If true, adds space for a left icon</li>
+            <li><code>hasRightIcon</code>: Boolean. If true, adds space for a right icon</li>
+            <li><code>prefix</code>: Optional prefix text (like "http://" or "USD")</li>
+            <li><code>class</code>: Additional CSS classes</li>
+            <li><code>fullWidth</code>: Boolean. Makes the input full width</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- TextArea Component -->
+      <section id="textarea" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">TextArea Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The TextArea component is used for multi-line text input.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import TextArea from '../components/ui/TextArea.astro';
+
+&lt;TextArea 
+  placeholder="Type your message..." 
+  rows={4}
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: Optional ID for the textarea</li>
+            <li><code>name</code>: Optional name for the textarea</li>
+            <li><code>placeholder</code>: Placeholder text</li>
+            <li><code>value</code>: Textarea content</li>
+            <li><code>rows</code>: Number of visible text lines (default: 4)</li>
+            <li><code>required</code>: Boolean</li>
+            <li><code>disabled</code>: Boolean</li>
+            <li><code>class</code>: Additional CSS classes</li>
+            <li><code>fullWidth</code>: Boolean. Makes the textarea full width</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SelectField Component -->
+      <section id="select" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">SelectField Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The SelectField component is used for selecting a value from a dropdown list.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import SelectField from '../components/ui/SelectField.astro';
+
+&lt;SelectField defaultOption="Select an option"&gt;
+  &lt;option value="option1"&gt;Option 1&lt;/option&gt;
+  &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+&lt;/SelectField&gt;
+
+// With icon
+&lt;SelectField 
+  defaultOption="Select an option"
+  hasIcon={true}
+&gt;
+  &lt;Icon name="clock" slot="icon" /&gt;
+  &lt;option value="option1"&gt;Option 1&lt;/option&gt;
+  &lt;option value="option2"&gt;Option 2&lt;/option&gt;
+&lt;/SelectField&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: Optional ID for the select</li>
+            <li><code>name</code>: Optional name for the select</li>
+            <li><code>required</code>: Boolean</li>
+            <li><code>disabled</code>: Boolean</li>
+            <li><code>hasIcon</code>: Boolean. If true, adds space for an icon</li>
+            <li><code>defaultOption</code>: Text for the default empty option</li>
+            <li><code>class</code>: Additional CSS classes</li>
+            <li><code>fullWidth</code>: Boolean. Makes the select full width</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Checkboxes Component -->
+      <section id="checkboxes" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Checkbox Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Checkbox component is used for selecting multiple options from a set.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Checkbox from '../components/ui/Checkbox.astro';
+
+// Basic checkbox
+&lt;Checkbox 
+  id="checkbox1" 
+  label="Checkbox label" 
+/&gt;
+
+// Card style checkbox with description
+&lt;Checkbox 
+  id="checkbox2" 
+  label="Checkbox label" 
+  description="Additional description text"
+  variant="card"
+  hasIcon={true}
+&gt;
+  &lt;Icon name="cube" slot="icon" /&gt;
+&lt;/Checkbox&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: ID for the checkbox (required for label association)</li>
+            <li><code>name</code>: Optional name for the checkbox</li>
+            <li><code>label</code>: Checkbox label</li>
+            <li><code>description</code>: Optional additional description text</li>
+            <li><code>checked</code>: Boolean. Sets the checked state</li>
+            <li><code>required</code>: Boolean</li>
+            <li><code>disabled</code>: Boolean</li>
+            <li><code>hasIcon</code>: Boolean. If true, adds space for an icon</li>
+            <li><code>variant</code>: 'default' or 'card'</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Radio Component -->
+      <section id="radio" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Radio Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Radio component is used for selecting a single option from a set.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Radio from '../components/ui/Radio.astro';
+
+// Basic radio buttons (same name groups them)
+&lt;Radio 
+  id="radio1" 
+  name="radio-group" 
+  value="option1"
+  label="Option 1" 
+/&gt;
+&lt;Radio 
+  id="radio2" 
+  name="radio-group" 
+  value="option2"
+  label="Option 2" 
+  checked={true}
+/&gt;
+
+// Card style radio
+&lt;Radio 
+  id="radio3" 
+  name="radio-group2" 
+  value="option1"
+  label="Option 1" 
+  description="Additional description"
+  variant="card"
+/&gt;
+
+// Button style radio
+&lt;Radio 
+  id="radio4" 
+  name="radio-group3" 
+  value="option1"
+  label="Button Label" 
+  variant="button"
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: ID for the radio (required for label association)</li>
+            <li><code>name</code>: Name for the radio group</li>
+            <li><code>value</code>: Value of the radio option</li>
+            <li><code>label</code>: Radio label</li>
+            <li><code>description</code>: Optional additional description text</li>
+            <li><code>checked</code>: Boolean. Sets the checked state</li>
+            <li><code>required</code>: Boolean</li>
+            <li><code>disabled</code>: Boolean</li>
+            <li><code>hasIcon</code>: Boolean. If true, adds space for an icon</li>
+            <li><code>variant</code>: 'default', 'card', or 'button'</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Toggle Component -->
+      <section id="toggle" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Toggle Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Toggle component is a switch that toggles between on and off states.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Toggle from '../components/ui/Toggle.astro';
+
+// Basic toggle
+&lt;Toggle 
+  id="toggle1" 
+  label="Toggle label" 
+/&gt;
+
+// Toggle with description
+&lt;Toggle 
+  id="toggle2" 
+  label="Toggle label" 
+  description="Additional description text"
+  variant="with-label"
+  checked={true}
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: ID for the toggle (required for label association)</li>
+            <li><code>name</code>: Optional name for the toggle</li>
+            <li><code>label</code>: Toggle label</li>
+            <li><code>description</code>: Optional additional description text</li>
+            <li><code>checked</code>: Boolean. Sets the checked state</li>
+            <li><code>required</code>: Boolean</li>
+            <li><code>disabled</code>: Boolean</li>
+            <li><code>variant</code>: 'default' or 'with-label'</li>
+            <li><code>labelPosition</code>: 'left' or 'right' (default)</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Tag Component -->
+      <section id="tag" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Tag Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Tag component is used to categorize or label content.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Tag from '../components/ui/Tag.astro';
+
+// Basic tag
+&lt;Tag label="Category" /&gt;
+
+// Tag with icon
+&lt;Tag 
+  label="Category"
+  hasIcon={true}
+&gt;
+  &lt;Icon name="cube" slot="icon" size="sm" /&gt;
+&lt;/Tag&gt;
+
+// Pill-shaped tag
+&lt;Tag 
+  label="Category"
+  variant="pill"
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>label</code>: Tag text</li>
+            <li><code>hasIcon</code>: Boolean. If true, adds space for an icon</li>
+            <li><code>variant</code>: 'default' or 'pill'</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Tooltip Component -->
+      <section id="tooltip" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Tooltip Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Tooltip component displays additional information when hovering over an element.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Tooltip from '../components/ui/Tooltip.astro';
+
+// Basic tooltip
+&lt;Tooltip 
+  content="Tooltip content goes here"
+  position="top"
+&gt;
+  &lt;button&gt;Hover me&lt;/button&gt;
+&lt;/Tooltip&gt;
+
+// Tooltip with title and image
+&lt;Tooltip 
+  content="Tooltip content goes here"
+  title="Tooltip Title"
+  hasImage={true}
+  hasAction={true}
+  actionText="Learn more"
+  position="bottom"
+&gt;
+  &lt;img src="/path/to/image.jpg" slot="image" alt="Preview" /&gt;
+  &lt;button&gt;Hover me&lt;/button&gt;
+&lt;/Tooltip&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>content</code>: Tooltip text content</li>
+            <li><code>position</code>: 'top' (default), 'right', 'bottom', or 'left'</li>
+            <li><code>title</code>: Optional title for the tooltip</li>
+            <li><code>hasImage</code>: Boolean. If true, allows for an image in the tooltip</li>
+            <li><code>hasAction</code>: Boolean. If true, displays an action link</li>
+            <li><code>actionText</code>: Text for the action link (default: "Find out more")</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Tab/TabGroup Component -->
+      <section id="tabs" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Tab Components</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Tab and TabGroup components are used to create tabbed interfaces.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Tab from '../components/ui/Tab.astro';
+import TabGroup from '../components/ui/TabGroup.astro';
+
+&lt;TabGroup&gt;
+  &lt;Tab 
+    id="tab1" 
+    label="Monthly" 
+    isActive={true}
+  /&gt;
+  &lt;Tab 
+    id="tab2" 
+    label="Yearly"
+  /&gt;
+&lt;/TabGroup&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Tab Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: Optional ID for the tab</li>
+            <li><code>label</code>: Tab label text</li>
+            <li><code>isActive</code>: Boolean. If true, the tab appears selected</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">TabGroup Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Filter Components -->
+      <section id="filters" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Filter Components</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Filter and FilterGroup components are used to create filtering interfaces.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Filter from '../components/ui/Filter.astro';
+import FilterGroup from '../components/ui/FilterGroup.astro';
+import Icon from '../components/ui/Icon.astro';
+
+// Basic filter group
+&lt;FilterGroup&gt;
+  &lt;Filter 
+    label="View all" 
+    isActive={true}
+  /&gt;
+  &lt;Filter 
+    label="Category one"
+  /&gt;
+  &lt;Filter 
+    label="Category two"
+  /&gt;
+&lt;/FilterGroup&gt;
+
+// Filters with icons
+&lt;FilterGroup&gt;
+  &lt;Filter 
+    label="Descuento" 
+    isDropdown={true}
+    hasIcon={true}
+  &gt;
+    &lt;Icon name="cube" slot="icon" /&gt;
+  &lt;/Filter&gt;
+  &lt;Filter 
+    label="Precio" 
+    isDropdown={true}
+  /&gt;
+&lt;/FilterGroup&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Filter Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>id</code>: Optional ID for the filter</li>
+            <li><code>label</code>: Filter label text</li>
+            <li><code>isActive</code>: Boolean. If true, the filter appears selected</li>
+            <li><code>hasIcon</code>: Boolean. If true, adds space for an icon</li>
+            <li><code>isDropdown</code>: Boolean. If true, adds a dropdown arrow</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">FilterGroup Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>label</code>: Optional label for the filter group</li>
+            <li><code>inline</code>: Boolean. If true (default), filters are displayed inline</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- SliderArrow Component -->
+      <section id="slider-arrows" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">SliderArrow Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The SliderArrow component provides navigation buttons for carousels and sliders.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import SliderArrow from '../components/ui/SliderArrow.astro';
+
+// Previous arrow
+&lt;SliderArrow 
+  direction="prev" 
+  onClick="prevSlide()"
+/&gt;
+
+// Next arrow
+&lt;SliderArrow 
+  direction="next" 
+  onClick="nextSlide()"
+/&gt;
+
+// Disabled arrow
+&lt;SliderArrow 
+  direction="prev" 
+  disabled={true}
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>direction</code>: 'prev' or 'next'</li>
+            <li><code>onClick</code>: Optional JavaScript function to call on click</li>
+            <li><code>disabled</code>: Boolean. If true, the arrow appears disabled</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- FoodCard Component -->
+      <section id="food-card" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">FoodCard Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The FoodCard component displays food items with pricing information, ratings, and badges.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import FoodCard from '../components/ui/FoodCard.astro';
+
+// Basic food card
+&lt;FoodCard
+  title="Pachamanca criolla"
+  image="/images/card-foods/pachamanca.png"
+  rating={4.5}
+  normalPrice={162.00}
+  enManchaPrice={144.00}
+  discount={18.00}
+  badgeText="Lince"
+  splitPrice={16.00}
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>title</code>: The name of the food item</li>
+            <li><code>image</code>: Path to the food image</li>
+            <li><code>rating</code>: Numeric rating value (1-5, supports half stars)</li>
+            <li><code>normalPrice</code>: Regular price before discount</li>
+            <li><code>enManchaPrice</code>: Special En Mancha discounted price</li>
+            <li><code>discount</code>: Amount saved (normalPrice - enManchaPrice)</li>
+            <li><code>badgeText</code>: Optional. Text for the badge (e.g., location, "New")</li>
+            <li><code>splitPrice</code>: Optional. Price per person when splitting</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- RestaurantCard Component -->
+      <section id="restaurant-card" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">RestaurantCard Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The RestaurantCard component displays restaurant information with an image, name, speciality, and location.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import RestaurantCard from '../components/ui/RestaurantCard.astro';
+
+// Basic restaurant card
+&lt;RestaurantCard
+  name="Blackbrick"
+  image="/images/restaurants/blackbrick.jpg"
+  speciality="Pasta"
+  location="Miraflores"
+  isNew={true}
+/&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>name</code>: The name of the restaurant</li>
+            <li><code>image</code>: Path to the restaurant image</li>
+            <li><code>speciality</code>: Optional. The restaurant's culinary speciality</li>
+            <li><code>location</code>: Optional. The restaurant's location</li>
+            <li><code>isNew</code>: Optional boolean. If true, displays a "Nuevo" badge</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+      
+      <!-- Icon Component -->
+      <section id="icons" class="scroll-mt-16">
+        <h2 class="font-heading text-h3-sm text-neutral-darkest mb-4 pb-2 border-b border-neutral-lighter">Icon Component</h2>
+        
+        <div class="space-y-4">
+          <p class="text-md">
+            The Icon component provides a consistent way to display vector icons throughout the interface.
+          </p>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Usage</h3>
+          <pre class="bg-neutral-lightest p-4 rounded overflow-x-auto"><code>import Icon from '../components/ui/Icon.astro';
+
+// Basic usage
+&lt;Icon name="search" /&gt;
+
+// With size variants
+&lt;Icon name="cube" size="sm" /&gt;
+&lt;Icon name="cube" size="md" /&gt;
+&lt;Icon name="cube" size="lg" /&gt;
+
+// With additional classes
+&lt;Icon name="user" class="text-guardsman" /&gt;</code></pre>
+          
+          <h3 class="font-heading text-h5 text-neutral-darkest mt-6 mb-2">Props</h3>
+          <ul class="list-disc pl-6 space-y-2">
+            <li><code>name</code>: Icon name ('search', 'cube', 'credit-card', 'question', 'calendar', 'clock', 'user', 'check', 'circle')</li>
+            <li><code>size</code>: 'sm', 'md' (default), or 'lg'</li>
+            <li><code>class</code>: Additional CSS classes</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout> 

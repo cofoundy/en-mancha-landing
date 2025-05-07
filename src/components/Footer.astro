@@ -1,0 +1,132 @@
+---
+// Footer component data
+const currentYear = new Date().getFullYear();
+
+// Footer links structure
+const footerLinks = [
+  {
+    title: "Información General",
+    links: [
+      { label: "Contáctanos", url: "#" },
+      { label: "Soporte Técnico", url: "#" },
+      { label: "Preguntas Frecuentes", url: "#" },
+      { label: "Sobre Nosotros", url: "#" },
+      { label: "Blog", url: "#" }
+    ]
+  },
+  {
+    title: "Suscríbete",
+    links: [
+      { label: "Novedades", url: "#" },
+      { label: "Ofertas Especiales", url: "#" },
+      { label: "Eventos", url: "#" },
+      { label: "Recursos", url: "#" },
+      { label: "Testimonios", url: "#" }
+    ]
+  },
+  {
+    title: "Mantente Informado",
+    links: [
+      { label: "Actualizaciones", url: "#" },
+      { label: "Novedades", url: "#" },
+      { label: "Promociones", url: "#" },
+      { label: "Ofertas", url: "#" },
+      { label: "Beneficios", url: "#" }
+    ]
+  }
+];
+
+// Social links
+const socialLinks = [
+  { icon: "/icons/facebook.svg", url: "#", label: "Facebook" },
+  { icon: "/icons/instagram.svg", url: "#", label: "Instagram" },
+  { icon: "/icons/x.svg", url: "#", label: "Twitter" },
+  { icon: "/icons/linkedin.svg", url: "#", label: "LinkedIn" },
+  { icon: "/icons/youtube.svg", url: "#", label: "YouTube" }
+];
+---
+
+<footer class="bg-white w-full pt-16 pb-8 px-4 md:px-16 lg:px-64">
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Main footer content -->
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-6 pb-16 border-b border-neutral-light">
+      <!-- Logo column -->
+      <div class="flex-shrink-0">
+        <a href="/" class="inline-block">
+          <img src="/logoFooter.svg" alt="EnMancha Logo" width="83" height="65" />
+        </a>
+      </div>
+      
+      <!-- Navigation columns -->
+      <div class="flex flex-col md:flex-row gap-10 md:gap-[40px] flex-1">
+        {footerLinks.map((column) => (
+          <div class="flex flex-col gap-6 flex-1">
+            <h3 class="font-heading text-base font-medium text-neutral-darkest">{column.title}</h3>
+            <ul class="flex flex-col gap-4">
+              {column.links.map((link) => (
+                <li>
+                  <a href={link.url} class="font-body text-sm text-neutral-dark hover:text-primary transition-colors">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        
+        <!-- Newsletter signup column -->
+        <div class="flex flex-col gap-6 flex-1">
+          <h3 class="font-heading text-base font-medium text-neutral-darkest">Suscribirse</h3>
+          <div class="flex flex-col gap-4">
+            <p class="font-body text-sm text-neutral-dark">
+              Únete a nuestro boletín para estar al tanto de novedades y lanzamientos.
+            </p>
+            <div>
+              <form class="flex flex-col sm:flex-row gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Ingresa tu correo" 
+                  class="py-2 px-4 border border-neutral-light rounded text-sm focus:outline-none focus:ring-1 focus:ring-primary flex-1"
+                  required
+                />
+                <button 
+                  type="submit" 
+                  class="py-2 px-6 bg-white border border-neutral-light text-neutral-darkest rounded text-sm hover:bg-neutral-lightest transition-colors"
+                >
+                  Enviar
+                </button>
+              </form>
+              <p class="mt-2 text-xs text-neutral-dark">
+                Al suscribirte, aceptas nuestra Política de Privacidad y recibir actualizaciones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer bottom -->
+    <div class="pt-6 flex flex-col-reverse md:flex-row gap-6 justify-between items-center">
+      <!-- Copyright -->
+      <div class="text-xs md:text-sm text-neutral-dark">
+        © {currentYear} EnMancha. Todos los derechos reservados.
+      </div>
+      
+      <!-- Social icons (moved above legal links on mobile as per design) -->
+      <div class="flex gap-6">
+        {socialLinks.map((social) => (
+          <a href={social.url} aria-label={social.label} class="text-neutral-dark hover:text-primary transition-colors">
+            <img src={social.icon} alt={social.label} width="20" height="20" />
+          </a>
+        ))}
+      </div>
+      
+      <!-- Legal links -->
+      <div class="flex gap-6 text-xs md:text-sm text-neutral-dark">
+        <a href="#" class="hover:text-primary transition-colors">Política de Privacidad</a>
+        <a href="#" class="hover:text-primary transition-colors">Términos de Servicio</a>
+        <a href="#" class="hover:text-primary transition-colors">Configuración de Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer> 
