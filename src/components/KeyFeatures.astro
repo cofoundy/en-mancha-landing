@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -11,20 +13,23 @@ const {
   class: className = '',
 } = Astro.props;
 
+// Base path para imágenes
+const basePath = import.meta.env.BASE_URL;
+
 // Features data for desktop view
 const featuresDesktop = [
   {
-    icon: "/images/features/dishes.png",
+    icon: `${basePath}/images/features/dishes.png`,
     title: "Diversidad que se Ajusta a tu Empresa",
     description: "Encuentra múltiples opciones de catering adaptadas a distintos presupuestos, preferencias y ocasiones corporativas."
   },
   {
-    icon: "/images/features/trust.png",
+    icon: `${basePath}/images/features/trust.png`,
     title: "Proveedores Verificados y Confiables",
     description: "Trabajamos solo con empresas validadas para asegurar calidad, puntualidad y cumplimiento en cada evento."
   },
   {
-    icon: "/images/features/time.png",
+    icon: `${basePath}/images/features/time.png`,
     title: "Ahorra Tiempo y Costos en tus Pedidos",
     description: "Solicita, compara y confirma catering en minutos, con precios competitivos sin sacrificar calidad."
   }
@@ -33,17 +38,17 @@ const featuresDesktop = [
 // Features data for mobile view (different titles and descriptions as per design)
 const featuresMobile = [
   {
-    icon: "/images/features/dishes.png",
+    icon: `${basePath}/images/features/dishes.png`,
     title: "Variedad de Opciones para Todos los Gustos",
     description: "Explora una amplia gama de ofertas culinarias."
   },
   {
-    icon: "/images/features/trust.png",
+    icon: `${basePath}/images/features/trust.png`,
     title: "Confianza en Cada Elección de Proveedor",
     description: "Todos nuestros proveedores son cuidadosamente seleccionados."
   },
   {
-    icon: "/images/features/time.png",
+    icon: `${basePath}/images/features/time.png`,
     title: "Rapidez en la Confirmación de Solicitudes",
     description: "Confirma tu solicitud en minutos y sin complicaciones."
   }

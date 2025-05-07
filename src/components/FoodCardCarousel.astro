@@ -1,5 +1,6 @@
 ---
 import FoodCard from './ui/FoodCard.astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   title?: string;
@@ -13,11 +14,14 @@ const {
   class: className = '',
 } = Astro.props;
 
+// Base path para imágenes
+const basePath = import.meta.env.BASE_URL;
+
 // Sample food data
 const foodItems = [
   {
     title: "Pachamanca criolla",
-    image: "/images/card-foods/pachamanca.png",
+    image: `${basePath}/images/card-foods/pachamanca.png`,
     rating: 4.5,
     normalPrice: 162.00,
     enManchaPrice: 144.00,
@@ -27,7 +31,7 @@ const foodItems = [
   },
   {
     title: "Lomo saltado",
-    image: "/images/card-foods/lomoSaltado.jpg",
+    image: `${basePath}/images/card-foods/lomoSaltado.jpg`,
     rating: 4.5,
     normalPrice: 162.00,
     enManchaPrice: 144.00,
@@ -37,7 +41,7 @@ const foodItems = [
   },
   {
     title: "Ají de gallina gourmet",
-    image: "/images/card-foods/ajiGallina.jpg",
+    image: `${basePath}/images/card-foods/ajiGallina.jpg`,
     rating: 4.5,
     normalPrice: 162.00,
     enManchaPrice: 144.00,
@@ -47,7 +51,7 @@ const foodItems = [
   },
   {
     title: "Maquis parrilleros",
-    image: "/images/card-foods/maquis.jpg",
+    image: `${basePath}/images/card-foods/maquis.jpg`,
     rating: 4.5,
     normalPrice: 162.00,
     enManchaPrice: 144.00,

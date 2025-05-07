@@ -1,5 +1,6 @@
 ---
 import RestaurantCard from './ui/RestaurantCard.astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   title?: string;
@@ -13,25 +14,28 @@ const {
   class: className = '',
 } = Astro.props;
 
+// Base path para imágenes
+const basePath = import.meta.env.BASE_URL;
+
 // Sample restaurant data
 const restaurantItems = [
   {
     name: "Blackbrick",
-    image: "/images/restaurants/restaurant1.png",
+    image: `${basePath}/images/restaurants/restaurant1.png`,
     speciality: "Especialidad",
     location: "Lugar",
     isNew: true
   },
   {
     name: "Fog Harbor Fish House",
-    image: "/images/restaurants/restaurant2.png",
+    image: `${basePath}/images/restaurants/restaurant2.png`,
     speciality: "Especialidad",
     location: "Lugar",
     isNew: true
   },
   {
     name: "Chewy Balls",
-    image: "/images/restaurants/restaurant3.png",
+    image: `${basePath}/images/restaurants/restaurant3.png`,
     speciality: "Especialidad",
     location: "Lugar",
     isNew: false,
@@ -39,7 +43,7 @@ const restaurantItems = [
   },
   {
     name: "The Local House",
-    image: "/images/restaurants/restaurant4.png",
+    image: `${basePath}/images/restaurants/restaurant4.png`,
     speciality: "Especialidad",
     location: "Lugar",
     isNew: true

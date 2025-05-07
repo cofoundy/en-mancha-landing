@@ -1,6 +1,10 @@
 ---
+import { Image } from 'astro:assets';
 // Footer component data
 const currentYear = new Date().getFullYear();
+
+// Base path para imágenes
+const basePath = import.meta.env.BASE_URL;
 
 // Footer links structure
 const footerLinks = [
@@ -38,11 +42,11 @@ const footerLinks = [
 
 // Social links
 const socialLinks = [
-  { icon: "/icons/facebook.svg", url: "#", label: "Facebook" },
-  { icon: "/icons/instagram.svg", url: "#", label: "Instagram" },
-  { icon: "/icons/x.svg", url: "#", label: "Twitter" },
-  { icon: "/icons/linkedin.svg", url: "#", label: "LinkedIn" },
-  { icon: "/icons/youtube.svg", url: "#", label: "YouTube" }
+  { icon: `${basePath}/icons/facebook.svg`, url: "#", label: "Facebook" },
+  { icon: `${basePath}/icons/instagram.svg`, url: "#", label: "Instagram" },
+  { icon: `${basePath}/icons/x.svg`, url: "#", label: "Twitter" },
+  { icon: `${basePath}/icons/linkedin.svg`, url: "#", label: "LinkedIn" },
+  { icon: `${basePath}/icons/youtube.svg`, url: "#", label: "YouTube" }
 ];
 ---
 
@@ -52,8 +56,8 @@ const socialLinks = [
     <div class="flex flex-col lg:flex-row gap-12 lg:gap-6 pb-16 border-b border-neutral-light">
       <!-- Logo column -->
       <div class="flex-shrink-0">
-        <a href="/" class="inline-block">
-          <img src="/logoFooter.svg" alt="EnMancha Logo" width="83" height="65" />
+        <a href={basePath || "/"} class="inline-block">
+          <img src={`${basePath}/logoFooter.svg`} alt="EnMancha Logo" width="83" height="65" />
         </a>
       </div>
       

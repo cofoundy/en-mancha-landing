@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   title?: string;
   subtitle?: string;
@@ -11,20 +13,23 @@ const {
   class: className = '',
 } = Astro.props;
 
+// Base path para imágenes
+const basePath = import.meta.env.BASE_URL;
+
 // Steps data
 const steps = [
   {
-    image: "/images/how-woks/placeholder1.png",
+    image: `${basePath}/images/how-woks/placeholder1.png`,
     title: "Selecciona el tipo de comida deseada",
     description: "Elige entre diversas opciones de menús."
   },
   {
-    image: "/images/how-woks/placeholder2.png",
+    image: `${basePath}/images/how-woks/placeholder2.png`,
     title: "Elige la mejor opcion para",
     description: "Indica cuándo y cuántos disfrutarán la comida."
   },
   {
-    image: "/images/how-woks/placeholder3.png",
+    image: `${basePath}/images/how-woks/placeholder3.png`,
     title: "Confirma la mejor oferta",
     description: "Revisa las propuestas y elige la ideal."
   }

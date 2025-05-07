@@ -1,6 +1,7 @@
 ---
 import Button from './ui/Button.astro';
 import Icon from './ui/Icon.astro';
+import { Image } from 'astro:assets';
 
 interface Props {
   title?: string;
@@ -9,10 +10,13 @@ interface Props {
   class?: string;
 }
 
+// Base path para imágenes
+const basePath = import.meta.env.BASE_URL;
+
 const {
   title = "¡Antojos?! EnMancha te ofrece las mejores opciones",
   subtitle = "Descubre lo fácil que es coordinar comidas para tu mancha. Compara ofertas y elige la mejor opción en minutos.",
-  backgroundImage = "/images/backgroundImage.jpg",
+  backgroundImage = `${basePath}/images/backgroundImage.jpg`,
   class: className = '',
 } = Astro.props;
 ---
